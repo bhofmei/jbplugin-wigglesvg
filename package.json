@@ -1,0 +1,28 @@
+{
+  "name": "jbplugin-wigglesvg",
+  "version": "0.0.1",
+  "description": "SVG wiggle tracks for screenshots",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bhofmei/jbplugin-wigglesvg.git"
+  },
+  "keywords": [
+    "JBrowse",
+    "JBrowse",
+    "plugin"
+  ],
+  "author": "Brigitte Hofmeister",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bhofmei/jbplugin-wigglesvg/issues"
+  },
+  "homepage": "https://github.com/bhofmei/jbplugin-wigglesvg#readme",
+  "devDependencies": {
+    "jasmine": "^2.7.0",
+    "jbrowse" : "git+https://github.com/bhofmei/jbrowse"
+  }
+}
