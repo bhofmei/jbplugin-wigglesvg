@@ -1,0 +1,64 @@
+{
+   "formatVersion" : 1,
+   "names" : {
+      "type" : "Hash",
+      "url" : "names/"
+   },
+   "tracks" : [
+      {
+         "category" : "Test data",
+         "key" : "Reference sequence",
+         "type" : "SequenceTrack",
+         "chunkSize" : 20000,
+         "seqType" : "dna",
+         "storeClass" : "JBrowse/Store/Sequence/StaticChunked",
+         "label" : "DNA",
+         "urlTemplate" : "seq/{refseq_dirpath}/{refseq}-"
+      },
+      {
+         "type" : "JBrowse/View/Track/CanvasFeatures",
+         "style" : {
+            "className" : "feature"
+         },
+         "category" : "Test data",
+         "key" : "Genes",
+         "urlTemplate" : "tracks/genes/{refseq}/trackData.json",
+         "trackType" : null,
+         "label" : "genes",
+         "storeClass" : "JBrowse/Store/SeqFeature/NCList",
+         "compress" : 0
+      },
+      {
+         "category" : "Test data",
+         "key" : "H3K4me3 - XY",
+         "label" : "track_test_xy",
+         "storeClass" : "JBrowse/Store/SeqFeature/BigWig",
+         "type" : "JBrowse/View/Track/Wiggle/XYPlot",
+         "urlTemplate" : "chip_h3k4me3_test.bw"
+      },
+      {
+         "category" : "Test data",
+         "key" : "H3K4me3 - XY SVG",
+         "label" : "track_test_xy_svg",
+         "storeClass" : "JBrowse/Store/SeqFeature/BigWig",
+         "type" : "WiggleSVGPlotPlugin/View/Track/Wiggle/SVGXYPlot",
+         "urlTemplate" : "chip_h3k4me3_test.bw"
+      },
+      {
+        "category" : "Test data",
+         "key" : "H3K4me3 - Density",
+         "label" : "track_test_dens",
+         "storeClass" : "JBrowse/Store/SeqFeature/BigWig",
+         "type" : "JBrowse/View/Track/Wiggle/Density",
+         "urlTemplate" : "chip_h3k4me3_test.bw"
+      },
+      {
+        "category" : "Test data",
+         "key" : "H3K4me3 - SVG Density",
+         "label" : "track_test_dens_svg",
+         "storeClass" : "JBrowse/Store/SeqFeature/BigWig",
+         "type" : "WiggleSVGPlotPlugin/View/Track/Wiggle/SVGDensity",
+         "urlTemplate" : "chip_h3k4me3_test.bw"
+      }
+   ]
+}
