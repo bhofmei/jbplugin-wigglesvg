@@ -1,4 +1,4 @@
-define('WiggleSVGPlotPlugin/View/Wiggle/SVGDensity',[
+define('WiggleSVGPlotPlugin/View/Track/Wiggle/SVGDensity', [
     'dojo/_base/declare',
     'dojo/_base/lang',
     'dojo/_base/array',
@@ -75,7 +75,7 @@ define('WiggleSVGPlotPlugin/View/Wiggle/SVGDensity',[
 
         },
 
-        _preDraw(scale, leftBase, rightBase, block, canvas, features, featureRects, dataScale) {
+        _preDraw: function(scale, leftBase, rightBase, block, canvas, features, featureRects, dataScale) {
           // fill in background if necessary
           var bgColor = this.getConf('style.bg_color');
           if (bgColor) {
@@ -91,50 +91,53 @@ define('WiggleSVGPlotPlugin/View/Wiggle/SVGDensity',[
           }
         },
 
-    _drawFeatures: function( scale, leftBase, rightBase, block, canvas, pixels, dataScale ) {
-        var thisB = this;
-      var dim = canvas.getDimensions();
-        var canvasHeight = dim.height;
-      var canvasWidth = dim.width;
-        var normalize = dataScale.normalize;
+        _drawFeatures: function (scale, leftBase, rightBase, block, canvas, pixels, dataScale) {
+          var thisB = this;
+          var dim = canvas.getDimensions();
+          var canvasHeight = dim.height;
+          var canvasWidth = dim.width;
+          var normalize = dataScale.normalize;
 
-        var featureColor = typeof this.config.style.color == 'function' ? this.config.style.color :
-            (function() { // default color function uses conf variables
-                var disableClipMarkers = thisB.config.disable_clip_markers;
-                var normOrigin = dataScale.normalize( dataScale.origin );
+          var featureColor = typeof this.config.style.color == 'function' ? this.config.style.color :
+            (function () { // default color function uses conf variables
+              var disableClipMarkers = thisB.config.disable_clip_markers;
+              var normOrigin = dataScale.normalize(dataScale.origin);
 
-                return function( p , n) {
-                    var feature = p['feat'];
-                    return ( disableClipMarkers || n <= 1 && n >= 0 )
-                               // not clipped
-                               ? Color.blendColors(
-                                   new Color( thisB.getConfForFeature('style.bg_color', feature ) ),
-                                   new Color( thisB.getConfForFeature( n >= normOrigin ? 'style.pos_color' : 'style.neg_color', feature ) ),
-                                   Math.abs(n-normOrigin)
-                                 ).toString()
-                               // clipped
-                               : ( n > 1 ? thisB.getConfForFeature( 'style.pos_color', feature )
-                                         : thisB.getConfForFeature( 'style.neg_color', feature ) );
+              return function (p, n) {
+                var feature = p['feat'];
+                return (disableClipMarkers || n <= 1 && n >= 0)
+                  // not clipped
+                  ?
+                  Color.blendColors(
+                    new Color(thisB.getConfForFeature('style.bg_color', feature)),
+                    new Color(thisB.getConfForFeature(n >= normOrigin ? 'style.pos_color' : 'style.neg_color', feature)),
+                    Math.abs(n - normOrigin)
+                  )
+                  .toString()
+                  // clipped
+                  :
+                  (n > 1 ? thisB.getConfForFeature('style.pos_color', feature) :
+                    thisB.getConfForFeature('style.neg_color', feature));
 
-                };
+              };
             })();
 
-      var rects = [];
-      block.clipRects = [];
+          var rects = [];
+          block.clipRects = [];
 
-        array.forEach( pixels, function(p,i) {
+          array.forEach(pixels, function (p, i) {
             if (p) {
-                var score = p['score'];
-                var f = p['feat'];
+              var score = p['score'];
+              var f = p['feat'];
 
-                var n = dataScale.normalize( score );
-                var fill = ''+featureColor( p, n );
+              var n = dataScale.normalize(score);
+              var fill = '' + featureColor(p, n);
               // check if adding to previous
-              if(rects.length > 0 && rects[rects.length-1].score === score){
-                rects[rects.length-1].w++;
+              if (rects.length > 0 && rects[rects.length - 1].score === score) {
+                rects[rects.length - 1].w++;
                 // check clip markers
-                if(n > 1 || n < 0)
-                  block.clipRects[block.clipRects.length-1].w++
+                if (n > 1 || n < 0)
+                  block.clipRects[block.clipRects.length - 1].w++
               } else {
                 rects.push({
                   x: i,
@@ -143,45 +146,47 @@ define('WiggleSVGPlotPlugin/View/Wiggle/SVGDensity',[
                   fill: fill
                 });
                 // check clip marks
-                if(n > 1){
+                if (n > 1) {
                   block.clipRects.push({
                     x: i,
                     y: 0,
                     w: 1,
                     fill: thisB.getConfForFeature('style.clip_marker_color', f) || 'red'
                   });
-                } else if(n < 0){
+                } else if (n < 0) {
                   block.clipRects.push({
                     x: i,
-                    y: canvasHeight-3,
+                    y: canvasHeight - 3,
                     w: 1,
                     fill: thisB.getConfForFeature('style.clip_marker_color', f) || 'red'
                   });
                 }
               }
             }
-        });
-      // draw rectangles
-      array.forEach(rects, function(rect){
-        canvas.createRect({
-          x: rect.x,
-          y: 0,
-          width: rect.w,
-          height: canvasHeight
-        }).setFill(rect.fill);
-      });
-      // draw clip markers
-      if(!thisB.config.disable_clip_markers){
-        array.forEach(block.clipRects, function(rect){
-          canvas.createRect({
-            x: rect.x,
-            y: rect.y,
-            width: rect.w,
-            height: 3
-          }).setFill(rect.fill);
-        });
-      }
-    },
+          });
+          // draw rectangles
+          array.forEach(rects, function (rect) {
+            canvas.createRect({
+                x: rect.x,
+                y: 0,
+                width: rect.w,
+                height: canvasHeight
+              })
+              .setFill(rect.fill);
+          });
+          // draw clip markers
+          if (!thisB.config.disable_clip_markers) {
+            array.forEach(block.clipRects, function (rect) {
+              canvas.createRect({
+                  x: rect.x,
+                  y: rect.y,
+                  width: rect.w,
+                  height: 3
+                })
+                .setFill(rect.fill);
+            });
+          }
+        },
 
         /* If it's a boolean track, mask accordingly */
         _maskBySpans: function (scale, leftBase, rightBase, block, canvas, pixels, dataScale, spans) {

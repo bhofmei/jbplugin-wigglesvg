@@ -1,4 +1,4 @@
-define('WiggleSVGPlotPlugin/View/Wiggle/SVGXYPlot'[
+define('WiggleSVGPlotPlugin/View/Track/Wiggle/SVGXYPlot', [
     'dojo/_base/declare',
     'dojo/_base/lang',
     'dojo/_base/array',
@@ -28,8 +28,6 @@ define('WiggleSVGPlotPlugin/View/Wiggle/SVGXYPlot'[
           // it with this scaling scheme
           if (!this.scaling.compare(block.scaling) || !block.pixelScores)
             return;
-
-
 
           block.scaling = this.scaling;
 
@@ -74,9 +72,8 @@ define('WiggleSVGPlotPlugin/View/Wiggle/SVGXYPlot'[
                 break;
             }
           }
-
         },
-        _preDraw(scale, leftBase, rightBase, block, canvas, features, featureRects, dataScale) {
+        _preDraw: function(scale, leftBase, rightBase, block, canvas, features, featureRects, dataScale) {
           // fill in background if necessary
           var bgColor = this.getConf('style.bg_color');
           if (bgColor) {
