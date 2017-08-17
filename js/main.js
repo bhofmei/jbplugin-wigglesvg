@@ -1,10 +1,14 @@
 define([
     'dojo/_base/declare',
-    'JBrowse/Plugin'
+    'JBrowse/Plugin',
+  'WiggleSVGPlotPlugin/View/Track/Wiggle/SVGXYPlot',
+  'WiggleSVGPlotPlugin/View/Track/Wiggle/SVGDensity'
   ],
   function (
     declare,
-    JBrowsePlugin
+    JBrowsePlugin,
+     SVGXYPlot,
+     SVGDensity
   ) {
     return declare(JBrowsePlugin, {
       constructor: function (args) {
@@ -12,7 +16,7 @@ define([
 
         // do anything you need to initialize your plugin here
         console.log("WiggleSVGPlotPlugin plugin starting");
-        this.config.version = 'v0.0.1';
+        this.config.version = 'v1.0.0';
 
       }
     });

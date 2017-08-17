@@ -29,12 +29,13 @@ If that doesn't work, add this to _jbrowse_conf.json_:
     
 **Note**: The plugin location folder can be named differently, i.e. _svgwiggle_, but the plugin ID MUST be `jbplugin-wigglesvg` for the plugin to work correctly.
 
-
-
 ## Test
 Sample data is included in the plugin to test that the plugin is working properly. With `URL` as the URL path to the JBrowse instance, navigate a web browser to `URL/index.html?data=plugins/WiggleSVGPlotPlugin/test/data`.
 
 ## Using SVG Wiggle Plots
+In general, it is recommended to use XYPlot and Density over the SVGXYPlot and SVGDensity when using the browser.
+The main purpose of these SVG tracks are for screenshots. 
+
 Use the same as normal for XYPlot an Density except change `type` to `WiggleSVGPlotPlugin/View/Track/Wiggle/SVGXYPlot` or `WiggleSVGPlotPlugin/View/Track/Wiggle/SVGDensity`.
 
 Currently, masking of SVGXYPlots and SVGDensity do not work.
