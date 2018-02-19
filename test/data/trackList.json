@@ -45,6 +45,22 @@
          "urlTemplate" : "chip_h3k4me3_test.bw"
       },
       {
+         "category" : "Test data",
+         "key" : "H3K9me2 - XY",
+         "label" : "track_test2_xy",
+         "storeClass" : "JBrowse/Store/SeqFeature/BigWig",
+         "type" : "JBrowse/View/Track/Wiggle/XYPlot",
+         "urlTemplate" : "chip_h3k9m2_zscore.bw"
+      },
+      {
+         "category" : "Test data",
+         "key" : "H3K9me2 - XY SVG",
+         "label" : "track_test2_xy_svg",
+         "storeClass" : "JBrowse/Store/SeqFeature/BigWig",
+         "type" : "WiggleSVGPlotPlugin/View/Track/Wiggle/SVGXYPlot",
+         "urlTemplate" : "chip_h3k9m2_zscore.bw"
+      },
+      {
         "category" : "Test data",
          "key" : "H3K4me3 - Density",
          "label" : "track_test_dens",
