@@ -123,7 +123,7 @@ define('WiggleSVGPlotPlugin/View/Track/Wiggle/SVGXYPlot', [
               // check last position
               var lastPlus = plusList[plusList.length - 1];
               var lastMinus = minusList[minusList.length - 1];
-              if (lastPlus.y == top) {
+              if (lastPlus.y === top) {
                 // check to update clip marker
                 if (!disableClipMarkers && score < 0) {
                   block.clipRects[block.clipRects.length - 1].width++;
@@ -163,7 +163,7 @@ define('WiggleSVGPlotPlugin/View/Track/Wiggle/SVGXYPlot', [
               var top = Math.min(score, canvasHeight);
               // check last positions
               var lastPlus = plusList[plusList.length - 1];
-              var lastMinus = minusList[plusList.length - 1];
+              var lastMinus = minusList[minusList.length - 1];
               if (lastMinus.y === top) {
                 // check update clip marker
                 if (!disableClipMarkers && score > canvasHeight) {
@@ -225,6 +225,7 @@ define('WiggleSVGPlotPlugin/View/Track/Wiggle/SVGXYPlot', [
             x: canvasWidth,
             y: originY
           });
+
           // if no fill, remove first and last positions
           if (thisB.config.noFill) {
             plusList = plusList.slice(1, plusList.length - 1);
@@ -243,7 +244,7 @@ define('WiggleSVGPlotPlugin/View/Track/Wiggle/SVGXYPlot', [
             block.plusLine = plusLine;
           }
           // create minus
-          if (minusList.lenth > 2) {
+          if (minusList.length > 2) {
             var minusLine = canvas.createPolyline()
               .setShape(minusList)
               .setStroke(thisB.config.style.neg_color);
