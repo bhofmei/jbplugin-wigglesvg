@@ -166,24 +166,27 @@ define('WiggleSVGPlotPlugin/View/Track/Wiggle/SVGDensity', [
           });
           // draw rectangles
           array.forEach(rects, function (rect) {
-            canvas.createRect({
-                x: rect.x,
-                y: 0,
-                width: rect.w,
-                height: canvasHeight
-              })
-              .setFill(rect.fill);
+//            canvas.createRect({
+//                x: rect.x,
+//                y: 0,
+//                width: rect.w,
+//                height: canvasHeight
+//              })
+//              .setFill(rect.fill);
+            rect.y=0;
+            thisB._createRect(canvas, rect, canvasHeight);
           });
           // draw clip markers
           if (!thisB.config.disable_clip_markers) {
             array.forEach(block.clipRects, function (rect) {
-              canvas.createRect({
-                  x: rect.x,
-                  y: rect.y,
-                  width: rect.w,
-                  height: 3
-                })
-                .setFill(rect.fill);
+//              canvas.createRect({
+//                  x: rect.x,
+//                  y: rect.y,
+//                  width: rect.w,
+//                  height: 3
+//                })
+//                .setFill(rect.fill);
+              thisB._createRect(canvas, rect, 3);
             });
           }
         },
@@ -236,7 +239,11 @@ define('WiggleSVGPlotPlugin/View/Track/Wiggle/SVGDensity', [
               this.scoreDisplay.pole.style.height = cPos.h + 'px';
             }
           }
-        }
+        },
+      _createRect: function(canvas, rect, height){
+        var path = 'M ' + rect.x + ','+rect.y + ' h '+rect.w + ' v '+height + ' h -'+rect.w + ' z';
+        canvas.createPath({path: path}).setFill(rect.fill);
+      }
 
       });
 
