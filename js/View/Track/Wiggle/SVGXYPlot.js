@@ -147,7 +147,7 @@ define('WiggleSVGPlotPlugin/View/Track/Wiggle/SVGXYPlot', [
                     y: 0,
                     width: 1,
                     height: 3,
-                    fill: this.getConfForFeature('style.clip_marker_color', f) || this.getConfForFeature('style.minus_color', f)
+                    fill: this.getConfForFeature('style.clip_marker_color', f) || this.getConfForFeature('style.neg_color', f)
                   });
                 }
                 // check minus list
@@ -188,7 +188,7 @@ define('WiggleSVGPlotPlugin/View/Track/Wiggle/SVGXYPlot', [
                     y: canvas - 3,
                     width: 1,
                     height: 3,
-                    fill: this.getConfForFeature('style.clip_marker_color', f) || this.getConfForFeature('style.plus_color', f)
+                    fill: this.getConfForFeature('style.clip_marker_color', f) || this.getConfForFeature('style.pss_color', f)
                   });
                 }
                 // check plus features
@@ -289,13 +289,14 @@ define('WiggleSVGPlotPlugin/View/Track/Wiggle/SVGXYPlot', [
                   var varTop = toY(stats.scoreMean + plusminus);
                   var varHeight = toY(stats.scoreMean - plusminus) - varTop;
                   varHeight = Math.max(1, varHeight);
-                  canvas.createRect({
-                      x: 0,
-                      y: varTop,
-                      height: varHeight,
-                      width: canvasWidth
-                    })
-                    .setFill(fill);
+//                  canvas.createRect({
+//                      x: 0,
+//                      y: varTop,
+//                      height: varHeight,
+//                      width: canvasWidth
+//                    })
+//                    .setFill(fill);
+                  thisB._createRect(canvas, 0, varTop, varHeight, canvasWidth, fill);
                   var fontStyle = {
                     family: 'sans-serif',
                     size: '12px'
@@ -347,13 +348,14 @@ define('WiggleSVGPlotPlugin/View/Track/Wiggle/SVGXYPlot', [
           // draw clip markers
           if (!thisB.config.disable_clip_markers && block.hasOwnProperty('clipRects') && block.clipRects.length > 0) {
             array.forEach(block.clipRects, function (rect) {
-              canvas.createRect({
-                  x: rect.x,
-                  y: rect.y,
-                  height: rect.height,
-                  width: rect.width
-                })
-                .setFill(rect.fill);
+//              canvas.createRect({
+//                  x: rect.x,
+//                  y: rect.y,
+//                  height: rect.height,
+//                  width: rect.width
+//                })
+//                .setFill(rect.fill);
+              thisB._createRect(canvas, rect.x, rect.y, rect.height, rect.width, rect.fill);
             });
             block.clipRects = [];
           }
@@ -415,7 +417,12 @@ define('WiggleSVGPlotPlugin/View/Track/Wiggle/SVGXYPlot', [
               this.scoreDisplay.pole.style.height = cPos.h + 'px';
             }
           }
-        }
+        },
+
+      _createRect: function(canvas, x, y, h, w, fill){
+        var path = 'M ' + x + ','+y + ' h '+w + ' v '+h + ' h -'+w + ' z';
+        canvas.createPath({path: path}).setFill(fill);
+      }
 
       });
 
