@@ -15,9 +15,8 @@ define([
         var browser = args.browser;
 
         // do anything you need to initialize your plugin here
-        console.log("WiggleSVGPlotPlugin plugin starting");
-        this.config.version = 'v1.0.0';
-
+        this.config.version = 'v1.0.2';
+        console.log("WiggleSVGPlotPlugin plugin starting - " + this.config.version);
       }
     });
   });

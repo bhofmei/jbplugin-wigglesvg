@@ -1,7 +1,0 @@
-# Release notes
-
-# v1.0.1 - 2018-02-08
-- Fixed issue not showing minus strand coverage
-
-# v1.0.0
-- First functional release
