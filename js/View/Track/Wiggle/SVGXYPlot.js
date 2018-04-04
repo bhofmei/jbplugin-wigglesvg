@@ -188,7 +188,7 @@ define('WiggleSVGPlotPlugin/View/Track/Wiggle/SVGXYPlot', [
                     y: canvas - 3,
                     width: 1,
                     height: 3,
-                    fill: this.getConfForFeature('style.clip_marker_color', f) || this.getConfForFeature('style.pss_color', f)
+                    fill: this.getConfForFeature('style.clip_marker_color', f) || this.getConfForFeature('style.pos_color', f)
                   });
                 }
                 // check plus features
