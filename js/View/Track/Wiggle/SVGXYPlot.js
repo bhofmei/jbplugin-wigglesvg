@@ -185,7 +185,7 @@ define('WiggleSVGPlotPlugin/View/Track/Wiggle/SVGXYPlot', [
                 if (!disableClipMarkers && score > canvasHeight) {
                   block.clipRects.push({
                     x: i,
-                    y: canvas - 3,
+                    y: canvasHeight - 3,
                     width: 1,
                     height: 3,
                     fill: this.getConfForFeature('style.clip_marker_color', f) || this.getConfForFeature('style.pos_color', f)
