@@ -158,7 +158,7 @@ define('WiggleSVGPlotPlugin/View/Track/Wiggle/SVGDensity', [
                     x: i,
                     y: canvasHeight - 3,
                     w: 1,
-                    fill: thisB.getConfForFeature('style.clip_marker_color', f) || 'red'
+                    fill: thisB.getConfForFeature('style.clip_marker_color', f) || 'blue'
                   });
                 }
               }
